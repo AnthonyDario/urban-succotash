@@ -23,18 +23,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // ask for location permission
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             manager.requestWhenInUseAuthorization()
-            print("not determined")
         }
         
-        print("requested location")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: CLLocationManager Delegate
+    // MARK: CLLocationManagerDelegate
+    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             manager.startUpdatingLocation()
@@ -43,11 +37,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print("updated locations")
+        //map.setCenterCoordinate(locations[0].coordinate, animated: true)
+        var viewRegion = MKCoordinateRegionMakeWithDistance(locations[0].coordinate, 5000, 5000)
+        viewRegion = map.regionThatFits(viewRegion)
+        map.setRegion(viewRegion, animated: true)
         
-        if let coords = map.userLocation.location?.coordinate {
-            map.setCenterCoordinate(coords, animated: true)
-        }
+        manager.stopUpdatingLocation()
     }
 
 }
