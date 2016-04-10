@@ -30,6 +30,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is used to remind you do document your travels</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is used to remind you do document your travels</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
