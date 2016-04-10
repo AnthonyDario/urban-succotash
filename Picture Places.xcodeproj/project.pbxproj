@@ -12,8 +12,6 @@
 		8F7DCC561CBAD8FF006B9830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC541CBAD8FF006B9830 /* Main.storyboard */; };
 		8F7DCC581CBAD8FF006B9830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC571CBAD8FF006B9830 /* Assets.xcassets */; };
 		8F7DCC5B1CBAD8FF006B9830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC591CBAD8FF006B9830 /* LaunchScreen.storyboard */; };
-		8F7DCC661CBAD8FF006B9830 /* Picture_PlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC651CBAD8FF006B9830 /* Picture_PlacesTests.swift */; };
-		8F7DCC711CBAD8FF006B9830 /* Picture_PlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC701CBAD8FF006B9830 /* Picture_PlacesUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +40,7 @@
 		8F7DCC5A1CBAD8FF006B9830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F7DCC5C1CBAD8FF006B9830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F7DCC611CBAD8FF006B9830 /* Picture PlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F7DCC651CBAD8FF006B9830 /* Picture_PlacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture_PlacesTests.swift; sourceTree = "<group>"; };
-		8F7DCC671CBAD8FF006B9830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F7DCC6C1CBAD8FF006B9830 /* Picture PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F7DCC701CBAD8FF006B9830 /* Picture_PlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture_PlacesUITests.swift; sourceTree = "<group>"; };
-		8F7DCC721CBAD8FF006B9830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				8F7DCC4F1CBAD8FF006B9830 /* Picture Places */,
-				8F7DCC641CBAD8FF006B9830 /* Picture PlacesTests */,
-				8F7DCC6F1CBAD8FF006B9830 /* Picture PlacesUITests */,
 				8F7DCC4E1CBAD8FF006B9830 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,24 +97,6 @@
 				8F7DCC5C1CBAD8FF006B9830 /* Info.plist */,
 			);
 			path = "Picture Places";
-			sourceTree = "<group>";
-		};
-		8F7DCC641CBAD8FF006B9830 /* Picture PlacesTests */ = {
-			isa = PBXGroup;
-			children = (
-				8F7DCC651CBAD8FF006B9830 /* Picture_PlacesTests.swift */,
-				8F7DCC671CBAD8FF006B9830 /* Info.plist */,
-			);
-			path = "Picture PlacesTests";
-			sourceTree = "<group>";
-		};
-		8F7DCC6F1CBAD8FF006B9830 /* Picture PlacesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8F7DCC701CBAD8FF006B9830 /* Picture_PlacesUITests.swift */,
-				8F7DCC721CBAD8FF006B9830 /* Info.plist */,
-			);
-			path = "Picture PlacesUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F7DCC661CBAD8FF006B9830 /* Picture_PlacesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F7DCC711CBAD8FF006B9830 /* Picture_PlacesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
