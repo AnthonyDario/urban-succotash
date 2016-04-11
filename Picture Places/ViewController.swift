@@ -30,11 +30,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
             var locations = [CLLocation]();
             images.enumerateObjectsUsingBlock({ (object, index, stop) -> Void in
-                let asset = images[index] as! PHAsset
+                let asset = object as! PHAsset
                 if let location = asset.location{
                     locations.append(location);
                 }
             })
+            print(locations)
+            
+            //select a photo and change its location if not set
+            //add a photo using the camera and set its location
             
             //self.openPhotoLibraryButton();
             //call function to use photos
