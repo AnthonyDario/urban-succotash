@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPhotoLibraryChangeObserver {
 
     @IBOutlet weak var imageOutlet: UIImageView!
     var assetCollection: PHAssetCollection = PHAssetCollection()
@@ -32,7 +32,14 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         })
         
+        PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
+        
         //only do this when you want to see the new changes (PHPhotoLibrary - register change observer)
+    }
+    
+    func photoLibraryDidChange(changeInstance: PHChange){
+        let changeDetails = changeInstance.changeDetailsForFetchResult(photosAsset)
+        print(changeDetails)
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,7 +96,7 @@ class AddPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
                 print(newPhoto)
                 //just adding a test location at the moment
                 self.locations.append(CLLocation(latitude: 44.4280, longitude: 110.5885))
-                print(self.locations);
+                //print(self.locations);
         })
     
     }
