@@ -7,17 +7,56 @@
 //
 
 import UIKit
+import Photos
 
 class TableViewController: UITableViewController {
+    
+    var locations = [CLLocation]()
+    var locationNames = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("here")
+        print(locationNames)
+        let photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        
+        photosAsset.enumerateObjectsUsingBlock({ (object, index, stop) -> Void in
+            let asset = object as! PHAsset
+            print(asset)
+            if let location = asset.location{
+                self.locations.append(location);
+            }
+        })
+        
+        for i in 0...locations.count - 1{
+            updateLocationName(locations[i], index: i)
+        }
+
+        tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        /*let photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        
+        photosAsset.enumerateObjectsUsingBlock({ (object, index, stop) -> Void in
+            let asset = object as! PHAsset
+            print(asset)
+            if let location = asset.location{
+                self.locations.append(location);
+            }
+        })
+        
+        for i in 0...locations.count - 1{
+            updateLocationName(locations[i], index: i)
+        }*/
+        print("here2")
+        print(locationNames)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +67,48 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return locationNames.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
+        let cellIdentifier = "TableCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        //let pictureLocation = locations[indexPath.row]
+        print(locationNames)
+        cell.textLabel?.text = locationNames[indexPath.row]
+        //cell.textLabel?.text = String(locations[indexPath.row])
         // Configure the cell...
 
         return cell
     }
-    */
+    
+    func updateLocationName(location: CLLocation, index: Int) -> Void {
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            
+            if error != nil {
+                self.locationNames.append("Reverse geocoder failed with error" + error!.localizedDescription)
+                return
+            }
+            
+            if placemarks!.count > 0 {
+                let pm = placemarks![0] as CLPlacemark
+                self.locationNames.append(pm.name!)
+                print(pm.name)
+                //print(pm.region)
+                //print(pm.locality)
+            }
+            else {
+                self.locationNames.append("Problem with the data received from geocoder")
+            }
+            //figure out how to return and use the location name - sort of jerry rigging it right now and it isn't working properly...
+        })
+    }
 
     /*
     // Override to support conditional editing of the table view.
