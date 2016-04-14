@@ -12,16 +12,59 @@ import Photos
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var imagePicked: UIImageView!
+    var locations = [CLLocation]()
+    var locationNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //check to see if the authorization status has been granted
+        //check to see if the authorization status has been granted?
+        let photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         
-           }
+        photosAsset.enumerateObjectsUsingBlock({ (object, index, stop) -> Void in
+            let asset = object as! PHAsset
+            if let location = asset.location{
+                self.locations.append(location);
+            }
+        })
+        
+        for i in 0...locations.count - 1{
+            updateLocationName(locations[i], index: i)
+        }
+    }
     
-    override func viewDidAppear(animated: Bool) {
+    func updateLocationName(location: CLLocation, index: Int) -> Void {
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            
+            if error != nil {
+                self.locationNames.append("Reverse geocoder failed with error" + error!.localizedDescription)
+                return
+            }
+            
+            if placemarks!.count > 0 {
+                let pm = placemarks![0] as CLPlacemark
+                self.locationNames.append(pm.name!)
+                print(pm.name)
+                //print(pm.region)
+                //print(pm.locality)
+            }
+            else {
+                self.locationNames.append("Problem with the data received from geocoder")
+            }
+            //figure out how to return and use the location name - sort of jerry rigging it right now and it isn't working properly...
+        })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "ListRegionsSegue" {
+            if let destination = segue.destinationViewController as? TableViewController {
+                destination.locationNames = self.locationNames
+            }
+        }
+    }
+    
+    /*override func viewDidAppear(animated: Bool) {
         let status = PHPhotoLibrary.authorizationStatus()
         
         if status == .Authorized {
@@ -69,7 +112,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //  Permission Denied
             print("d")
         }
-    }
+    }*/
     
     /*func openPhotoLibraryButton() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
