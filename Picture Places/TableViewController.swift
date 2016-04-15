@@ -13,6 +13,8 @@ class TableViewController: UITableViewController {
     
     var locations = [CLLocation]()
     var locationNames = [String]()
+    var assetList = [PHAsset]()
+    var selectedRow = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +48,37 @@ class TableViewController: UITableViewController {
         //let pictureLocation = locations[indexPath.row]
         print(locationNames)
         cell.textLabel?.text = locationNames[indexPath.row]
+       
         //cell.textLabel?.text = String(locations[indexPath.row])
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedRow = indexPath.row
+        performSegueWithIdentifier("ToImageView", sender: self)
+        /*dispatch_async(dispatch_get_main_queue(),{
+         self.performSegueWithIdentifier("ToImageView", sender:self)
+         })*/
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "ToImageView" {
+            if let destination = segue.destinationViewController as? ShowPictureViewController {
+                let manager = PHImageManager.defaultManager()
+                let option = PHImageRequestOptions()
+                var thumbnail = UIImage()
+                option.synchronous = true
+                manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+                    thumbnail = result!
+                    destination.image = thumbnail
+                    print("done here")
+                })
+                print(assetList[selectedRow])
+                //destination.imageDisplay = self.locationNames
+            }
+        }
     }
     
     /*

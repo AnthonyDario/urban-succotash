@@ -44,7 +44,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="-76.5"/>
+            <point key="canvasLocation" x="1590" y="-76.5"/>
+        </scene>
+        <!--Show Picture View Controller-->
+        <scene sceneID="JvJ-0G-ley">
+            <objects>
+                <viewController id="2iB-Ks-IZK" customClass="ShowPictureViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8xe-Yu-XeY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xgn-5s-wWV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4j0-bH-RAr">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNI-La-zMh">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="132" width="240" height="128"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jNI-La-zMh"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jNI-La-zMh"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageDisplay" destination="jNI-La-zMh" id="MmM-ww-sAo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXb-NL-3xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2982" y="-76.5"/>
         </scene>
         <!--Add Photo View Controller-->
         <scene sceneID="NxS-uc-jk2">
@@ -113,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCU-Jn-7Xg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103.5" y="-76.5"/>
+            <point key="canvasLocation" x="3646.5" y="-76.5"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="KYA-Fr-qnm">
@@ -146,10 +184,13 @@
                             <outlet property="delegate" destination="hDc-Co-bn9" id="4TJ-qX-3MF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="2iB-Ks-IZK" kind="show" identifier="ToImageView" id="NZ8-ye-OiG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msO-gh-84c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2446.5" y="-76.5"/>
+            <point key="canvasLocation" x="2296.5" y="-76.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9iK-0N-fnO">
