@@ -23,7 +23,18 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let tbvc = tabBarController as! PictureTabController
+        assetList = tbvc.assetList
+        locations = tbvc.locations
+        locationNames = tbvc.locationNames
+        print(assetList)
+        print("here")
     }
+    
+    /*override func viewWillAppear(animated: Bool) {
+        let tbvc = tabBarController as! PictureTabController
+        assetList = tbvc.assetList
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

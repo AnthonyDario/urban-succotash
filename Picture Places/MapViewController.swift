@@ -8,17 +8,23 @@
 
 import UIKit
 import MapKit
+import Photos
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
     let manager = CLLocationManager()
+    var assetList = [PHAsset]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         manager.delegate = self
+        
+        let tbvc = tabBarController as! PictureTabController
+        assetList = tbvc.assetList
         
         // ask for location permission
         if CLLocationManager.authorizationStatus() == .NotDetermined {

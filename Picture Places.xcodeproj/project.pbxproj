@@ -17,6 +17,9 @@
 		8F7DCC581CBAD8FF006B9830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC571CBAD8FF006B9830 /* Assets.xcassets */; };
 		8F7DCC5B1CBAD8FF006B9830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC591CBAD8FF006B9830 /* LaunchScreen.storyboard */; };
 		8F7DCC7F1CBADD70006B9830 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7DCC7E1CBADD70006B9830 /* MapKit.framework */; };
+		C5A0D35D1CD1716F007EC9BA /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */; };
+		C5A0D35E1CD1716F007EC9BA /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */; };
+		C5A0D35F1CD1716F007EC9BA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		8F7DCC611CBAD8FF006B9830 /* Picture PlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC6C1CBAD8FF006B9830 /* Picture PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC7E1CBADD70006B9830 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
+		C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,9 @@
 				8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */,
 				8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */,
 				8F6453911CD1704900B4C089 /* PictureTabController.swift */,
+				C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */,
+				C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */,
+				C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */,
 				8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */,
 				8F6453881CD168CF00B4C089 /* PictureAnnotation.swift */,
 				8F7DCC541CBAD8FF006B9830 /* Main.storyboard */,
@@ -259,6 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F6453921CD1704900B4C089 /* PictureTabController.swift in Sources */,
+				C5A0D35E1CD1716F007EC9BA /* ShowPictureViewController.swift in Sources */,
+				C5A0D35D1CD1716F007EC9BA /* AddPhotoViewController.swift in Sources */,
+				C5A0D35F1CD1716F007EC9BA /* TableViewController.swift in Sources */,
 				8F7DCC531CBAD8FF006B9830 /* MapViewController.swift in Sources */,
 				8F6453901CD16FDF00B4C089 /* CameraViewController.swift in Sources */,
 				8F7DCC511CBAD8FF006B9830 /* AppDelegate.swift in Sources */,
