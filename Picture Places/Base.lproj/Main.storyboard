@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pml-Yb-jMD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                             <constraint firstItem="UQO-le-sZi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oBL-X5-7JL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="gWr-yJ-9bc"/>
+                    <tabBarItem key="tabBarItem" title="map" id="gWr-yJ-9bc"/>
                     <connections>
                         <outlet property="map" destination="UQO-le-sZi" id="FwL-rX-278"/>
                     </connections>
@@ -190,7 +190,7 @@
             </objects>
             <point key="canvasLocation" x="2988" y="-87"/>
         </scene>
-        <!--Item-->
+        <!--Camera-->
         <scene sceneID="ucd-vP-1fu">
             <objects>
                 <viewController id="WTY-yx-MZX" customClass="CameraViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CrO-3Q-dSl"/>
+                    <tabBarItem key="tabBarItem" title="Camera" id="CrO-3Q-dSl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2i-W1-HRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
