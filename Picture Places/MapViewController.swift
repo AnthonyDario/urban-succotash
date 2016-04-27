@@ -32,11 +32,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         
         // adding pins
-        let newYorkLocation = CLLocationCoordinate2DMake(40.730872, -74.003066)
-        dropPin(newYorkLocation, title: "DOOBY DOOBY BOOBY BOOBY")
-        
-        
-        
+        for picture in assetList {
+            if let location = picture.location {
+                if let date = picture.creationDate {
+                    dropPin(location.coordinate, title: date.description)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
