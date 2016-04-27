@@ -11,16 +11,15 @@
 		8F64538E1CD16BBB00B4C089 /* Hoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F64538D1CD16BBB00B4C089 /* Hoot.png */; };
 		8F6453901CD16FDF00B4C089 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */; };
 		8F6453921CD1704900B4C089 /* PictureTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453911CD1704900B4C089 /* PictureTabController.swift */; };
-		8F6453971CD1715E00B4C089 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453931CD1715E00B4C089 /* AddPhotoViewController.swift */; };
-		8F6453981CD1715E00B4C089 /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453941CD1715E00B4C089 /* ShowPictureViewController.swift */; };
-		8F6453991CD1715E00B4C089 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453951CD1715E00B4C089 /* TableViewController.swift */; };
-		8F64539A1CD1715E00B4C089 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453961CD1715E00B4C089 /* ViewController.swift */; };
 		8F7DCC511CBAD8FF006B9830 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */; };
 		8F7DCC531CBAD8FF006B9830 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */; };
 		8F7DCC561CBAD8FF006B9830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC541CBAD8FF006B9830 /* Main.storyboard */; };
 		8F7DCC581CBAD8FF006B9830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC571CBAD8FF006B9830 /* Assets.xcassets */; };
 		8F7DCC5B1CBAD8FF006B9830 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC591CBAD8FF006B9830 /* LaunchScreen.storyboard */; };
 		8F7DCC7F1CBADD70006B9830 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7DCC7E1CBADD70006B9830 /* MapKit.framework */; };
+		C5A0D35D1CD1716F007EC9BA /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */; };
+		C5A0D35E1CD1716F007EC9BA /* ShowPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */; };
+		C5A0D35F1CD1716F007EC9BA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		8F6453931CD1715E00B4C089 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
 		8F6453941CD1715E00B4C089 /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
 		8F6453951CD1715E00B4C089 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		8F6453961CD1715E00B4C089 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8F7DCC4D1CBAD8FF006B9830 /* Picture Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Picture Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +57,9 @@
 		8F7DCC611CBAD8FF006B9830 /* Picture PlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC6C1CBAD8FF006B9830 /* Picture PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picture PlacesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC7E1CBADD70006B9830 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPictureViewController.swift; sourceTree = "<group>"; };
+		C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,13 +122,15 @@
 				8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */,
 				8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */,
 				8F6453911CD1704900B4C089 /* PictureTabController.swift */,
+				C5A0D3591CD1716F007EC9BA /* AddPhotoViewController.swift */,
+				C5A0D35A1CD1716F007EC9BA /* ShowPictureViewController.swift */,
+				C5A0D35B1CD1716F007EC9BA /* TableViewController.swift */,
 				8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */,
 				8F6453881CD168CF00B4C089 /* PictureAnnotation.swift */,
 				8F7DCC541CBAD8FF006B9830 /* Main.storyboard */,
 				8F6453931CD1715E00B4C089 /* AddPhotoViewController.swift */,
 				8F6453941CD1715E00B4C089 /* ShowPictureViewController.swift */,
 				8F6453951CD1715E00B4C089 /* TableViewController.swift */,
-				8F6453961CD1715E00B4C089 /* ViewController.swift */,
 				8F7DCC571CBAD8FF006B9830 /* Assets.xcassets */,
 				8F7DCC591CBAD8FF006B9830 /* LaunchScreen.storyboard */,
 				8F7DCC5C1CBAD8FF006B9830 /* Info.plist */,
@@ -271,10 +274,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F6453921CD1704900B4C089 /* PictureTabController.swift in Sources */,
-				8F6453981CD1715E00B4C089 /* ShowPictureViewController.swift in Sources */,
-				8F6453971CD1715E00B4C089 /* AddPhotoViewController.swift in Sources */,
-				8F64539A1CD1715E00B4C089 /* ViewController.swift in Sources */,
-				8F6453991CD1715E00B4C089 /* TableViewController.swift in Sources */,
+				C5A0D35E1CD1716F007EC9BA /* ShowPictureViewController.swift in Sources */,
+				C5A0D35D1CD1716F007EC9BA /* AddPhotoViewController.swift in Sources */,
+				C5A0D35F1CD1716F007EC9BA /* TableViewController.swift in Sources */,
 				8F7DCC531CBAD8FF006B9830 /* MapViewController.swift in Sources */,
 				8F6453901CD16FDF00B4C089 /* CameraViewController.swift in Sources */,
 				8F7DCC511CBAD8FF006B9830 /* AppDelegate.swift in Sources */,

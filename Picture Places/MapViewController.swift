@@ -8,17 +8,23 @@
 
 import UIKit
 import MapKit
+import Photos
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
     let manager = CLLocationManager()
+    var assetList = [PHAsset]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         manager.delegate = self
+        
+        let tbvc = tabBarController as! PictureTabController
+        assetList = tbvc.assetList
         
         // ask for location permission
         if CLLocationManager.authorizationStatus() == .NotDetermined {
@@ -26,11 +32,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         
         // adding pins
-        let newYorkLocation = CLLocationCoordinate2DMake(40.730872, -74.003066)
-        dropPin(newYorkLocation, title: "DOOBY DOOBY BOOBY BOOBY")
-        
-        
-        
+        for picture in assetList {
+            if let location = picture.location {
+                if let date = picture.creationDate {
+                    dropPin(location.coordinate, title: date.description)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
