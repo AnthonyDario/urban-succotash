@@ -25,6 +25,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             manager.requestWhenInUseAuthorization()
         }
         
+        // ask for notification permission
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        let not = UILocalNotification()
+        not.alertAction = "what up"
+        not.alertBody = "col"
+        not.hasAction = true
+        let current = NSDate().dateByAddingTimeInterval(10)
+        not.fireDate = current
+        //let reg = CLCircularRegion(center: CLLocationCoordinate2DMake(51.5, 0.12), radius: 1000, identifier: "london")
+        //not.region = reg
+        UIApplication.sharedApplication().scheduleLocalNotification(not)
     }
     
     // MARK: CLLocationManagerDelegate
