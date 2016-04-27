@@ -11,9 +11,10 @@ import Photos
 
 class TableViewController: UITableViewController {
     
-    var locations = [CLLocation]()
-    var locationNames = [String]()
     var assetList = [PHAsset]()
+    var assetLocationMap = [PHAsset: CLLocation?]()
+    var assetLocationNameMap = [PHAsset: String?]()
+    var locationNames = [String]()
     var selectedRow = -1
 
     override func viewDidLoad() {
@@ -25,16 +26,18 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         let tbvc = tabBarController as! PictureTabController
         assetList = tbvc.assetList
-        locations = tbvc.locations
-        locationNames = tbvc.locationNames
-        print(assetList)
-        print("here")
+        assetLocationMap = tbvc.assetLocationMap
+        assetLocationNameMap = tbvc.assetLocationNameMap
+        
+        for (_, locationName) in assetLocationNameMap {
+            if let actualLocationName = locationName{
+                locationNames.append(actualLocationName)
+            }
+            else{
+                locationNames.append("No Location Given")
+            }
+        }
     }
-    
-    /*override func viewWillAppear(animated: Bool) {
-        let tbvc = tabBarController as! PictureTabController
-        assetList = tbvc.assetList
-    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,7 +60,7 @@ class TableViewController: UITableViewController {
         let cellIdentifier = "TableCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         //let pictureLocation = locations[indexPath.row]
-        print(locationNames)
+        //print(locationNames)
         cell.textLabel?.text = locationNames[indexPath.row]
        
         //cell.textLabel?.text = String(locations[indexPath.row])
@@ -84,9 +87,8 @@ class TableViewController: UITableViewController {
                 manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
                     thumbnail = result!
                     destination.image = thumbnail
-                    print("done here")
                 })
-                print(assetList[selectedRow])
+                //print(assetList[selectedRow])
                 //destination.imageDisplay = self.locationNames
             }
         }
