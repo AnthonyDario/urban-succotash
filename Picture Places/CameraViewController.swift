@@ -41,4 +41,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismissViewControllerAnimated(true, completion: nil);
     }
     
+    @IBAction func takePictureButtonPressed(sender: AnyObject) {
+        // TODO: actually take the picture...
+    }
 }
