@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8F6453891CD168CF00B4C089 /* PictureAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453881CD168CF00B4C089 /* PictureAnnotation.swift */; };
 		8F64538E1CD16BBB00B4C089 /* Hoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F64538D1CD16BBB00B4C089 /* Hoot.png */; };
+		8F6453901CD16FDF00B4C089 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */; };
+		8F6453921CD1704900B4C089 /* PictureTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6453911CD1704900B4C089 /* PictureTabController.swift */; };
 		8F7DCC511CBAD8FF006B9830 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */; };
 		8F7DCC531CBAD8FF006B9830 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */; };
 		8F7DCC561CBAD8FF006B9830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DCC541CBAD8FF006B9830 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		8F6453881CD168CF00B4C089 /* PictureAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureAnnotation.swift; sourceTree = "<group>"; };
 		8F64538D1CD16BBB00B4C089 /* Hoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Hoot.png; path = "Picture Places/Resource/Hoot.png"; sourceTree = "<group>"; };
+		8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		8F6453911CD1704900B4C089 /* PictureTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureTabController.swift; sourceTree = "<group>"; };
 		8F7DCC4D1CBAD8FF006B9830 /* Picture Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Picture Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				8F7DCC501CBAD8FF006B9830 /* AppDelegate.swift */,
+				8F64538F1CD16FDF00B4C089 /* CameraViewController.swift */,
+				8F6453911CD1704900B4C089 /* PictureTabController.swift */,
 				8F7DCC521CBAD8FF006B9830 /* MapViewController.swift */,
 				8F6453881CD168CF00B4C089 /* PictureAnnotation.swift */,
 				8F7DCC541CBAD8FF006B9830 /* Main.storyboard */,
@@ -252,7 +258,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F6453921CD1704900B4C089 /* PictureTabController.swift in Sources */,
 				8F7DCC531CBAD8FF006B9830 /* MapViewController.swift in Sources */,
+				8F6453901CD16FDF00B4C089 /* CameraViewController.swift in Sources */,
 				8F7DCC511CBAD8FF006B9830 /* AppDelegate.swift in Sources */,
 				8F6453891CD168CF00B4C089 /* PictureAnnotation.swift in Sources */,
 			);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,12 +29,204 @@
                             <constraint firstItem="UQO-le-sZi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oBL-X5-7JL"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="gWr-yJ-9bc"/>
                     <connections>
                         <outlet property="map" destination="UQO-le-sZi" id="FwL-rX-278"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2994" y="-955"/>
+        </scene>
+        <!--Show Picture View Controller-->
+        <scene sceneID="JvJ-0G-ley">
+            <objects>
+                <viewController id="2iB-Ks-IZK" customClass="ShowPictureViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8xe-Yu-XeY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xgn-5s-wWV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4j0-bH-RAr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNI-La-zMh">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="132" width="240" height="128"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jNI-La-zMh"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jNI-La-zMh"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageDisplay" destination="jNI-La-zMh" id="MmM-ww-sAo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXb-NL-3xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3830" y="-87"/>
+        </scene>
+        <!--Add Photo View Controller-->
+        <scene sceneID="NxS-uc-jk2">
+            <objects>
+                <viewController id="ZBn-A9-tUn" customClass="AddPhotoViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xc0-Lx-Nrk"/>
+                        <viewControllerLayoutGuide type="bottom" id="EJx-P9-gSv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NHk-eP-ymP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEX-SQ-Cy9">
+                                <rect key="frame" x="228" y="264" width="144" height="30"/>
+                                <state key="normal" title="Choose From Library"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="128" y="266" width="144" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="chooseFromLibraryButton:" destination="ZBn-A9-tUn" eventType="touchUpInside" id="JMQ-3F-iBC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HD-T3-Gbp">
+                                <rect key="frame" x="258" y="321" width="85" height="30"/>
+                                <state key="normal" title="Take Picture"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="158" y="316" width="85" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takePictureButton:" destination="ZBn-A9-tUn" eventType="touchUpInside" id="EsF-fl-6M6"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAm-aW-IJb">
+                                <rect key="frame" x="180" y="88" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="77" width="240" height="128"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYj-LN-fck">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="183" y="391" width="34" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="saveButton:" destination="ZBn-A9-tUn" eventType="touchUpInside" id="6r9-44-D7l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="WYj-LN-fck"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="WYj-LN-fck"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageOutlet" destination="PAm-aW-IJb" id="TKE-Z9-IVs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FCU-Jn-7Xg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4728" y="-87"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="KYA-Fr-qnm">
+            <objects>
+                <tableViewController id="hDc-Co-bn9" customClass="TableViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xdb-Gi-Tnh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" textLabel="PTv-te-Di8" style="IBUITableViewCellStyleDefault" id="SCY-Pn-DOS">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SCY-Pn-DOS" id="MYy-HP-YcQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PTv-te-Di8">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hDc-Co-bn9" id="Owr-yZ-kcf"/>
+                            <outlet property="delegate" destination="hDc-Co-bn9" id="4TJ-qX-3MF"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="Eiv-ej-5DT"/>
+                    <connections>
+                        <segue destination="2iB-Ks-IZK" kind="show" identifier="ToImageView" id="NZ8-ye-OiG"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="msO-gh-84c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2988" y="-87"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ucd-vP-1fu">
+            <objects>
+                <viewController id="WTY-yx-MZX" customClass="CameraViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gBa-GJ-hrC"/>
+                        <viewControllerLayoutGuide type="bottom" id="D9j-FP-TQG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xyf-GI-rLa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="CrO-3Q-dSl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f2i-W1-HRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2988" y="744"/>
+        </scene>
+        <!--Picture Tab Controller-->
+        <scene sceneID="AyN-LO-zjd">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Pml-Yb-jMD" customClass="PictureTabController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="387-bb-KSb">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="63z-Er-upN"/>
+                        <segue destination="hDc-Co-bn9" kind="relationship" relationship="viewControllers" id="LbP-nN-yz5"/>
+                        <segue destination="WTY-yx-MZX" kind="relationship" relationship="viewControllers" id="NkD-DM-iXK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2bd-B5-oMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2176" y="-106"/>
         </scene>
     </scenes>
 </document>
