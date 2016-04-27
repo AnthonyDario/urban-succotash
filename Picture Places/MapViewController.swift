@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
@@ -25,7 +25,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             manager.requestWhenInUseAuthorization()
         }
         
-        // ask for notification permission
+        // adding pins
+        let newYorkLocation = CLLocationCoordinate2DMake(40.730872, -74.003066)
+        dropPin(newYorkLocation, title: "DOOBY DOOBY BOOBY BOOBY")
+        
+        
         
     }
     
@@ -40,6 +44,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         //let reg = CLCircularRegion(center: CLLocationCoordinate2DMake(51.5, 0.12), radius: 1000, identifier: "london")
         //not.region = reg
         UIApplication.sharedApplication().scheduleLocalNotification(not)
+    }
+    
+    // MARK: MKMapViewDelegate
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        if annotation.isKindOfClass(PictureAnnotation) {
+            let picAnnotation = annotation as? PictureAnnotation
+            mapView.translatesAutoresizingMaskIntoConstraints = false
+            
+            var annotationView = map.dequeueReusableAnnotationViewWithIdentifier("Picture Annotation") as MKAnnotationView!
+            
+            if annotationView == nil {
+                annotationView = picAnnotation?.annotationView
+            } else {
+                annotationView.annotation = annotation;
+            }
+            
+            return annotationView
+        } else {
+            return nil
+        }
     }
     
     // MARK: CLLocationManagerDelegate
@@ -58,6 +87,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         map.setRegion(viewRegion, animated: true)
         
         manager.stopUpdatingLocation()
+    }
+    
+    // MARK: Helper functions
+    
+    private func dropPin(coordinate: CLLocationCoordinate2D, title: String) {
+        
+        let picture = UIImage(named: "Hoot")
+        let newPin = PictureAnnotation(coordinate: coordinate, picture: picture!)
+        newPin.title = title
+        map.addAnnotation(newPin)
     }
 
 }
