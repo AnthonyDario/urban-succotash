@@ -16,28 +16,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     let manager = CLLocationManager()
     var assetList = [PHAsset]()
-    
+    var assetLocationMap = [PHAsset: CLLocation?]()
+    var assetLocationNameMap = [PHAsset: String?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         manager.delegate = self
+        map.delegate = self
         
         let tbvc = tabBarController as! PictureTabController
         assetList = tbvc.assetList
+        assetLocationMap = tbvc.assetLocationMap
+        assetLocationNameMap = tbvc.assetLocationNameMap
         
         // ask for location permission
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             manager.requestWhenInUseAuthorization()
         }
         
+        let picManager = PHImageManager()
+        
         // adding pins
         for picture in assetList {
-            if let location = picture.location {
-                if let date = picture.creationDate {
-                    dropPin(location.coordinate, title: date.description)
+            
+            picManager.requestImageForAsset(picture, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: nil, resultHandler: {(result, info) -> Void in
+                
+                if let pic = result {
+                
+                    if let location = picture.location {
+                            
+                        if let name = self.assetLocationNameMap[picture] {
+                            self.dropPin(location.coordinate, title: name!, image: pic)
+                        }
+                        else {
+                            self.dropPin(location.coordinate, title: "No Title", image: pic)
+                        }
+                    }
                 }
-            }
+            })
+            
+
         }
     }
     
@@ -73,7 +92,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 annotationView.annotation = annotation;
             }
             
-            configureAnnotationView(annotationView!)
+            if let view = annotationView as? PictureAnnotationView {
+                configureAnnotationView(view)
+            }
             
             return annotationView
             
@@ -108,18 +129,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: Helper functions
     
-    private func configureAnnotationView(view: MKAnnotationView) {
-        let image = UIImage(named: "Hoot")
-        let imageView = UIImageView(image: image)
-        view.detailCalloutAccessoryView = imageView
+    private func configureAnnotationView(view: PictureAnnotationView) {
+        
+        if let annotation = view.annotation as? PictureAnnotation {
+            let image = annotation.picture
+            let imageView = UIImageView(image: image)
+            view.detailCalloutAccessoryView = imageView
+        }
     }
     
-    private func dropPin(coordinate: CLLocationCoordinate2D, title: String) {
+    private func dropPin(coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
         
-        //let picture = UIImage(named: "Hoot")
-        let pin = PictureAnnotation(coordinate: coordinate, title: title)
-        //let newPin = PictureAnnotationView(annotation: pin)
+        let pin = PictureAnnotation(coordinate: coordinate, title: title, image: image)
         map.addAnnotation(pin)
+        print("placed pin")
     }
 
 }

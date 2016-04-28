@@ -14,16 +14,18 @@ class PictureAnnotation : NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var picture: UIImage!
     
-    init (coordinate: CLLocationCoordinate2D, title: String) {
+    init (coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
         self.coordinate = coordinate
         self.title = title
+        picture = image
     }
     
 }
 
 // the view for the annotation
-class PictureAnnotationView: MKAnnotationView {
+class PictureAnnotationView: MKPinAnnotationView {
 
     class var reuseIdentifier: String {
         return "Picture Annotation"
