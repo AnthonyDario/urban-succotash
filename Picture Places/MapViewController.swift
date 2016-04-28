@@ -55,8 +55,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     }
                 }
             })
-            
-
         }
     }
     
@@ -103,10 +101,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let _ = view as? PictureAnnotationView {
-            print("Got the view bitches!")
-        }
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("what up!!!!")
     }
     
     // MARK: CLLocationManagerDelegate
@@ -134,15 +130,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if let annotation = view.annotation as? PictureAnnotation {
             let image = annotation.picture
             let imageView = UIImageView(image: image)
-            view.detailCalloutAccessoryView = imageView
+            let button = UIButton(type: .Custom)
+            
+            button.addTarget(self, action: #selector(MapViewController.selectedButton), forControlEvents: UIControlEvents.TouchUpInside)
+            button.frame = imageView.frame
+            button.setImage(image, forState: UIControlState.Normal)
+            view.detailCalloutAccessoryView = button
+            
         }
     }
     
     private func dropPin(coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
         
+        
         let pin = PictureAnnotation(coordinate: coordinate, title: title, image: image)
         map.addAnnotation(pin)
-        print("placed pin")
+    }
+    
+    @objc private func selectedButton () {
+        performSegueWithIdentifier("ShowPicture", sender: self)
     }
 
 }
