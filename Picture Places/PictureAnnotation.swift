@@ -8,17 +8,21 @@
 
 import MapKit
 
-class PictureAnnotation: NSObject, MKAnnotation {
+// the annotation for the picture
+class PictureAnnotation: MKAnnotationView {
 
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    var annotationView: MKAnnotationView
-    
-    init (coordinate: CLLocationCoordinate2D, picture: UIImage) {
-        annotationView = MKAnnotationView()
-        annotationView.image = picture
-        self.coordinate = coordinate
+    class var reuseIdentifier: String {
+        return "Picture Annotation"
     }
+    
+    convenience init(annotation: MKAnnotation!) {
+        self.init(annotation: annotation, reuseIdentifier: PictureAnnotation.reuseIdentifier)
+        
+    }
+    
+}
+
+// The callout of the annotation
+class PictureCallout: UIView {
     
 }
