@@ -63,19 +63,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if annotation.isKindOfClass(PictureAnnotation) {
             let picAnnotation = annotation as? PictureAnnotation
-            mapView.translatesAutoresizingMaskIntoConstraints = false
             
             var annotationView = map.dequeueReusableAnnotationViewWithIdentifier("Picture Annotation") as MKAnnotationView!
             
             if annotationView == nil {
-                annotationView = picAnnotation?.annotationView
+                annotationView = PictureAnnotationView(annotation: picAnnotation)
+                annotationView.canShowCallout = true
             } else {
                 annotationView.annotation = annotation;
             }
             
+            configureAnnotationView(annotationView!)
+            
             return annotationView
+            
         } else {
             return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if let _ = view as? PictureAnnotationView {
+            print("Got the view bitches!")
         }
     }
     
@@ -99,12 +108,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: Helper functions
     
+    private func configureAnnotationView(view: MKAnnotationView) {
+        let image = UIImage(named: "Hoot")
+        let imageView = UIImageView(image: image)
+        view.detailCalloutAccessoryView = imageView
+    }
+    
     private func dropPin(coordinate: CLLocationCoordinate2D, title: String) {
         
-        let picture = UIImage(named: "Hoot")
-        let newPin = PictureAnnotation(coordinate: coordinate, picture: picture!)
-        newPin.title = title
-        map.addAnnotation(newPin)
+        //let picture = UIImage(named: "Hoot")
+        let pin = PictureAnnotation(coordinate: coordinate, title: title)
+        //let newPin = PictureAnnotationView(annotation: pin)
+        map.addAnnotation(pin)
     }
 
 }

@@ -9,14 +9,28 @@
 import MapKit
 
 // the annotation for the picture
-class PictureAnnotation: MKAnnotationView {
+class PictureAnnotation : NSObject, MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init (coordinate: CLLocationCoordinate2D, title: String) {
+        self.coordinate = coordinate
+        self.title = title
+    }
+    
+}
+
+// the view for the annotation
+class PictureAnnotationView: MKAnnotationView {
 
     class var reuseIdentifier: String {
         return "Picture Annotation"
     }
     
     convenience init(annotation: MKAnnotation!) {
-        self.init(annotation: annotation, reuseIdentifier: PictureAnnotation.reuseIdentifier)
+        self.init(annotation: annotation, reuseIdentifier: PictureAnnotationView.reuseIdentifier)
         
     }
     
