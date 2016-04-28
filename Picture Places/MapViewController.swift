@@ -101,10 +101,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("what up!!!!")
-    }
-    
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -123,6 +119,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         manager.stopUpdatingLocation()
     }
     
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowPicture" {
+            if let destination = segue.destinationViewController as? ShowPictureViewController {
+                if let button = sender as? UIButton {
+                    destination.image = (button.imageView?.image)!
+                }
+            }
+        }
+    }
+    
     // MARK: Helper functions
     
     private func configureAnnotationView(view: PictureAnnotationView) {
@@ -132,7 +139,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let imageView = UIImageView(image: image)
             let button = UIButton(type: .Custom)
             
-            button.addTarget(self, action: #selector(MapViewController.selectedButton), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(MapViewController.selectedButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             button.frame = imageView.frame
             button.setImage(image, forState: UIControlState.Normal)
             view.detailCalloutAccessoryView = button
@@ -147,8 +154,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         map.addAnnotation(pin)
     }
     
-    @objc private func selectedButton () {
-        performSegueWithIdentifier("ShowPicture", sender: self)
+    @objc private func selectedButton (sender: UIButton) {
+        performSegueWithIdentifier("ShowPicture", sender: sender)
     }
 
 }
