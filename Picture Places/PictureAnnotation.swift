@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import Photos
 
 // the annotation for the picture
 class PictureAnnotation : NSObject, MKAnnotation {
@@ -15,11 +16,13 @@ class PictureAnnotation : NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var picture: UIImage!
+    var asset: PHAsset
     
-    init (coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
+    init (coordinate: CLLocationCoordinate2D, title: String, image: UIImage, asset: PHAsset) {
         self.coordinate = coordinate
         self.title = title
         picture = image
+        self.asset = asset
     }
     
 }

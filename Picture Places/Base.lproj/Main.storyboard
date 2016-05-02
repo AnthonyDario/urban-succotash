@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--map-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Picture_Places" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <constraint firstItem="UQO-le-sZi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oBL-X5-7JL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="map" id="gWr-yJ-9bc"/>
+                    <navigationItem key="navigationItem" id="4AQ-YZ-sFB"/>
                     <connections>
                         <outlet property="map" destination="UQO-le-sZi" id="FwL-rX-278"/>
                         <segue destination="2iB-Ks-IZK" kind="show" identifier="ShowPicture" id="cyG-xq-1g5"/>
@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2994" y="-955"/>
+            <point key="canvasLocation" x="3912" y="-955.5"/>
         </scene>
         <!--Show Picture View Controller-->
         <scene sceneID="JvJ-0G-ley">
@@ -329,7 +329,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="63z-Er-upN"/>
+                        <segue destination="52L-0f-5MM" kind="relationship" relationship="viewControllers" id="63z-Er-upN"/>
                         <segue destination="klv-p6-sAk" kind="relationship" relationship="viewControllers" id="LbP-nN-yz5"/>
                         <segue destination="WTY-yx-MZX" kind="relationship" relationship="viewControllers" id="NkD-DM-iXK"/>
                     </connections>
@@ -356,6 +356,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dd-Cp-r6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2988" y="-87"/>
+        </scene>
+        <!--map-->
+        <scene sceneID="XWW-4i-YBv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="52L-0f-5MM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="map" id="gWr-yJ-9bc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dte-ch-cBX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ExQ-6r-vjl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hcW-3Q-VSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2994" y="-955.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

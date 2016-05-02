@@ -18,6 +18,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var assetList = [PHAsset]()
     var assetLocationMap = [PHAsset: CLLocation?]()
     var assetLocationNameMap = [PHAsset: String?]()
+    var currentAsset: PHAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +61,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         
                         
                         if let name = self.assetLocationNameMap[picture] {
-                            self.dropPin(location.coordinate, title: name!, image: pic)
+                            self.dropPin(location.coordinate, title: name!, image: pic, asset: picture)
                         }
                         else {
-                            self.dropPin(location.coordinate, title: "No Name", image: pic)
+                            self.dropPin(location.coordinate, title: "No Name", image: pic, asset: picture)
                         }
                     }
                 }
@@ -136,6 +137,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 button.frame = frame
                 button.setImage(image, forState: UIControlState.Normal)
                 self.map.addSubview(button)
+                currentAsset = picAnnotation.asset
             }
         }
     }
@@ -173,6 +175,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             if let destination = segue.destinationViewController as? ShowPictureViewController {
                 if let button = sender as? UIButton {
                     destination.image = (button.imageView?.image)!
+                    destination.asset = currentAsset!
                 }
             }
         }
@@ -180,10 +183,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: Helper functions
     
-    private func dropPin(coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
+    private func dropPin(coordinate: CLLocationCoordinate2D, title: String, image: UIImage, asset: PHAsset) {
         
         
-        let pin = PictureAnnotation(coordinate: coordinate, title: title, image: image)
+        let pin = PictureAnnotation(coordinate: coordinate, title: title, image: image, asset: asset)
         map.addAnnotation(pin)
     }
     
