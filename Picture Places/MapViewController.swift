@@ -25,30 +25,40 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         manager.delegate = self
         map.delegate = self
+    
+        // ask for location permission
+        print("requesting location permission")
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            manager.requestWhenInUseAuthorization()
+        }
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
         let tbvc = tabBarController as! PictureTabController
         assetList = tbvc.assetList
         assetLocationMap = tbvc.assetLocationMap
         assetLocationNameMap = tbvc.assetLocationNameMap
         
-        // ask for location permission
-        print("requesting location permission")
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
-            manager.requestWhenInUseAuthorization()
-        }
-        
         let picManager = PHImageManager()
+        
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .HighQualityFormat
         
         // adding pins
         print("iterating through \(assetList.count) pictures")
         for picture in assetList {
             
-            picManager.requestImageForAsset(picture, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: nil, resultHandler: {(result, info) -> Void in
+            picManager.requestImageForAsset(picture, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: options, resultHandler: {(result, info) -> Void in
                 
                 if let pic = result {
-                
+                    
+                    print(self.assetLocationMap[picture])
+                    
                     if let location = self.assetLocationMap[picture]! {
-                            
+                        
+                        
                         if let name = self.assetLocationNameMap[picture] {
                             self.dropPin(location.coordinate, title: name!, image: pic)
                         }
