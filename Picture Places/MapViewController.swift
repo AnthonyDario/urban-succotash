@@ -47,7 +47,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 if let pic = result {
                 
-                    if let location = picture.location {
+                    if let location = self.assetLocationMap[picture]! {
                             
                         if let name = self.assetLocationNameMap[picture] {
                             self.dropPin(location.coordinate, title: name!, image: pic)
