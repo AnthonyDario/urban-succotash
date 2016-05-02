@@ -12,10 +12,10 @@ import Photos
 class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var imageDisplay: UIImageView!
-    @IBOutlet weak var imageLabel: UILabel!
     @IBOutlet weak var useCurrentLabel: UILabel!
     @IBOutlet weak var currentLocationSwitch: UISwitch!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var imageTextField: UITextField!
     
     var image: UIImage = UIImage()
     var asset = PHAsset()
@@ -30,13 +30,12 @@ class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
         
         if let name = locationName {
             if name == nil{
-                imageLabel.text = "No Location Given"
+                imageTextField.text = "No Location Given"
             }
             else{
-                imageLabel.text = name
+                imageTextField.text = name
                 currentLocationSwitch.hidden = true
                 useCurrentLabel.hidden = true
-                saveButton.hidden = true
             }
         }
         
@@ -62,11 +61,15 @@ class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBAction func saveChanges(sender: AnyObject) {
         let tbvc = tabBarController as! PictureTabController
-        if currentLocationSwitch.on {
+        if currentLocationSwitch.on && !currentLocationSwitch.hidden {
             let actualLocation: CLLocation =  CLLocation(latitude: locationValue.latitude, longitude: locationValue.longitude)
             //let actualLocation = CLLocation(latitude: 40, longitude: 74)
             tbvc.assetLocationMap.updateValue(actualLocation, forKey: asset)
-            tbvc.updateLocationName(asset, location: actualLocation)
+            tbvc.updateLocationName(asset, location: actualLocation, writtenName: nil)
+        }
+        else if currentLocationSwitch.hidden || !currentLocationSwitch.on{
+            print("here")
+            tbvc.updateLocationName(asset, location: nil, writtenName: imageTextField.text)
         }
     }
 

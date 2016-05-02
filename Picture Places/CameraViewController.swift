@@ -82,7 +82,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //let actualLocation = CLLocation(latitude: 40, longitude: 74)
                 //adding this image to our lists
                 tbvc.assetLocationMap.updateValue(actualLocation, forKey: newPhoto)
-                tbvc.updateLocationName(newPhoto, location: actualLocation)
+                tbvc.updateLocationName(newPhoto, location: actualLocation, writtenName: nil)
             let alert = UIAlertController(title: "Saved", message: "Your photo has been saved", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: {(alertAction)in
                 alert.dismissViewControllerAnimated(true, completion: nil)

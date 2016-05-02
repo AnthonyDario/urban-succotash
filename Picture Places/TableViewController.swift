@@ -25,23 +25,6 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        /*let tbvc = tabBarController as! PictureTabController
-        assetList = tbvc.assetList
-        assetLocationMap = tbvc.assetLocationMap
-        assetLocationNameMap = tbvc.assetLocationNameMap
-        
-        var index = 0;
-        for (asset, locationName) in assetLocationNameMap {
-            if let actualLocationName = locationName{
-                locationNames.append(actualLocationName)
-                
-            }
-            else{
-                locationNames.append("No Location Given")
-            }
-            indexNameMap.updateValue(asset, forKey: index)
-            index = index + 1;
-        }*/
     }
     
     override func viewWillAppear(animated: Bool) {
