@@ -21,6 +21,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("mapView: viewDidLoad")
         
         manager.delegate = self
         map.delegate = self
@@ -31,6 +32,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         assetLocationNameMap = tbvc.assetLocationNameMap
         
         // ask for location permission
+        print("requesting location permission")
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             manager.requestWhenInUseAuthorization()
         }
@@ -38,6 +40,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let picManager = PHImageManager()
         
         // adding pins
+        print("iterating through \(assetList.count) pictures")
         for picture in assetList {
             
             picManager.requestImageForAsset(picture, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: nil, resultHandler: {(result, info) -> Void in
@@ -47,10 +50,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     if let location = picture.location {
                             
                         if let name = self.assetLocationNameMap[picture] {
+                            print("got name: \(name)")
                             self.dropPin(location.coordinate, title: name!, image: pic)
                         }
                         else {
-                            self.dropPin(location.coordinate, title: "No Title", image: pic)
+                            print("no name")
+                            self.dropPin(location.coordinate, title: "No Name", image: pic)
                         }
                     }
                 }
@@ -60,6 +65,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidAppear(animated: Bool) {
         
+        /*
         let not = UILocalNotification()
         not.alertAction = "what up"
         not.alertBody = "col"
@@ -69,6 +75,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //let reg = CLCircularRegion(center: CLLocationCoordinate2DMake(51.5, 0.12), radius: 1000, identifier: "london")
         //not.region = reg
         UIApplication.sharedApplication().scheduleLocalNotification(not)
+        */
     }
     
     // MARK: MKMapViewDelegate
@@ -85,7 +92,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             if annotationView == nil {
                 annotationView = PictureAnnotationView(annotation: picAnnotation)
-                annotationView.canShowCallout = true
             } else {
                 annotationView.annotation = annotation;
             }
@@ -98,6 +104,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
         } else {
             return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        if let picView = view as? PictureAnnotationView {
+            if let picAnnotation = picView.annotation as? PictureAnnotation {
+                let frame = CGRectMake(picView.frame.origin.x - 18, picView.frame.origin.y - 60, 50,50)
+                let picture = UIImageView(frame: frame)
+                picture.image = picAnnotation.picture
+                self.map.addSubview(picture)
+                //picView.addSubview(UIImageView(image: picAnnotation.picture))
+            }
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+       
+        for subview in map.subviews {
+            if subview.isKindOfClass(UIImageView) {
+                subview.removeFromSuperview()
+            }
         }
     }
     

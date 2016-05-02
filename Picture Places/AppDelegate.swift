@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let app = UIApplication.sharedApplication()
+        print("requesting notifications")
         app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Badge, .Alert], categories: nil))
+        print("\tdone with notifications")
         return true
     }
 

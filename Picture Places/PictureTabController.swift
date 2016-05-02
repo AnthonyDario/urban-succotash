@@ -18,6 +18,7 @@ class PictureTabController: UITabBarController {
     override func viewDidLoad() {
         let photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         
+        print("getting assets")
         photosAsset.enumerateObjectsUsingBlock({ (object, index, stop) -> Void in
             let asset = object as! PHAsset
             
@@ -29,11 +30,20 @@ class PictureTabController: UITabBarController {
                 self.assetLocationMap.updateValue(nil, forKey: asset)
             }
         })
+        print("\tgot all assets")
         
+        print("updating name map")
         for (asset, location) in assetLocationMap{
             updateLocationName(asset, location: location)
         }
-
+        print("\tupdated name map")
+        
+        //selectedViewController = viewControllers![1]
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("segue: \(segue.identifier)")
     }
     
     func updateLocationName(asset: PHAsset, location: CLLocation?) -> Void {

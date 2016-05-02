@@ -26,19 +26,21 @@ class PictureAnnotation : NSObject, MKAnnotation {
 
 // the view for the annotation
 class PictureAnnotationView: MKPinAnnotationView {
-
+    
     class var reuseIdentifier: String {
         return "Picture Annotation"
     }
     
     convenience init(annotation: MKAnnotation!) {
         self.init(annotation: annotation, reuseIdentifier: PictureAnnotationView.reuseIdentifier)
-        
+        self.canShowCallout = false
     }
     
 }
 
-// The callout of the annotation
-class PictureCallout: UIView {
+class PictureAnnotationCalloutView: UIImageView {
     
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        self.hitTest(touches[touches.startIndex].locationInView(self), withEvent: event)
+//    }
 }
