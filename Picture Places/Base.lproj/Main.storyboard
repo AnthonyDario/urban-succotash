@@ -294,7 +294,10 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShF-cJ-FX2">
                                 <rect key="frame" x="258" y="505" width="85" height="30"/>
-                                <state key="normal" title="Take Picture"/>
+                                <state key="normal" title="Save Picture"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="158" y="705" width="86" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="takePictureButtonPressed:" destination="WTY-yx-MZX" eventType="touchUpInside" id="HEV-sj-esL"/>
                                 </connections>
