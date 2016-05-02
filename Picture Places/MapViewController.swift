@@ -107,10 +107,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 annotationView.annotation = annotation;
             }
             
-            if let view = annotationView as? PictureAnnotationView {
-                configureAnnotationView(view)
-            }
-            
             return annotationView
             
         } else {
@@ -173,21 +169,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // MARK: Helper functions
-    
-    private func configureAnnotationView(view: PictureAnnotationView) {
-        
-        if let annotation = view.annotation as? PictureAnnotation {
-            let image = annotation.picture
-            let imageView = UIImageView(image: image)
-            let button = UIButton(type: .Custom)
-            
-            button.addTarget(self, action: #selector(MapViewController.selectedButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            button.frame = imageView.frame
-            button.setImage(image, forState: UIControlState.Normal)
-            view.detailCalloutAccessoryView = button
-            
-        }
-    }
     
     private func dropPin(coordinate: CLLocationCoordinate2D, title: String, image: UIImage) {
         
