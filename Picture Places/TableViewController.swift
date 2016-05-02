@@ -15,6 +15,7 @@ class TableViewController: UITableViewController {
     var assetLocationMap = [PHAsset: CLLocation?]()
     var assetLocationNameMap = [PHAsset: String?]()
     var locationNames = [String]()
+    var indexNameMap = [Int: PHAsset]()
     var selectedRow = -1
 
     override func viewDidLoad() {
@@ -24,19 +25,45 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        /*let tbvc = tabBarController as! PictureTabController
+        assetList = tbvc.assetList
+        assetLocationMap = tbvc.assetLocationMap
+        assetLocationNameMap = tbvc.assetLocationNameMap
+        
+        var index = 0;
+        for (asset, locationName) in assetLocationNameMap {
+            if let actualLocationName = locationName{
+                locationNames.append(actualLocationName)
+                
+            }
+            else{
+                locationNames.append("No Location Given")
+            }
+            indexNameMap.updateValue(asset, forKey: index)
+            index = index + 1;
+        }*/
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         let tbvc = tabBarController as! PictureTabController
         assetList = tbvc.assetList
         assetLocationMap = tbvc.assetLocationMap
         assetLocationNameMap = tbvc.assetLocationNameMap
         
-        for (_, locationName) in assetLocationNameMap {
+        var index = 0;
+        locationNames = [String]()
+        for (asset, locationName) in assetLocationNameMap {
             if let actualLocationName = locationName{
                 locationNames.append(actualLocationName)
+                
             }
             else{
                 locationNames.append("No Location Given")
             }
+            indexNameMap.updateValue(asset, forKey: index)
+            index = index + 1;
         }
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,11 +105,14 @@ class TableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        //print(findKeyForValue(locationNames[selectedRow], dictionary: assetLocationNameMap))
         if segue.identifier == "ToImageView" {
             if let destination = segue.destinationViewController as? ShowPictureViewController {
                 let manager = PHImageManager.defaultManager()
                 let option = PHImageRequestOptions()
                 var thumbnail = UIImage()
+                destination.locationText = locationNames[selectedRow]
+                destination.asset = indexNameMap[selectedRow]!
                 option.synchronous = true
                 manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
                     thumbnail = result!
