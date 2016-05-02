@@ -111,7 +111,6 @@ class TableViewController: UITableViewController {
                 let manager = PHImageManager.defaultManager()
                 let option = PHImageRequestOptions()
                 var thumbnail = UIImage()
-                destination.locationText = locationNames[selectedRow]
                 destination.asset = indexNameMap[selectedRow]!
                 option.synchronous = true
                 manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
