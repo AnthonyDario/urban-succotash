@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import Photos
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    var assetCollection: PHAssetCollection = PHAssetCollection()
+    var photosAsset: PHFetchResult!
+    var locationValue: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            
+        }
         
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
             //load the camera interface
@@ -33,6 +48,12 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             }))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+        
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationValue = manager.location!.coordinate
     }
     
     // MARK: UIImagePickerDelegate
@@ -43,5 +64,25 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func takePictureButtonPressed(sender: AnyObject) {
         // TODO: actually take the picture...
+        
+        //actually the save button?
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+            let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(self.imageView.image!)
+            let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset
+            if let albumChangeRequest = PHAssetCollectionChangeRequest(forAssetCollection: self.assetCollection, assets: self.photosAsset) {
+                albumChangeRequest.addAssets([assetPlaceholder!])
+            }
+        }, completionHandler: { success, error in
+                print("added image to album")
+                print(error)
+                let newAssets = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+                let newPhoto = newAssets.lastObject as! PHAsset
+                let tbvc = self.tabBarController as! PictureTabController
+                let actualLocation: CLLocation =  CLLocation(latitude: self.locationValue.latitude, longitude: self.locationValue.longitude)
+                //let actualLocation = CLLocation(latitude: 40, longitude: 74)
+                //adding this image to our lists
+                tbvc.assetLocationMap.updateValue(actualLocation, forKey: newPhoto)
+                tbvc.updateLocationName(newPhoto, location: actualLocation)
+        })
     }
 }

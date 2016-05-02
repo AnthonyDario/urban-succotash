@@ -111,7 +111,6 @@ class TableViewController: UITableViewController {
                 let manager = PHImageManager.defaultManager()
                 let option = PHImageRequestOptions()
                 var thumbnail = UIImage()
-                destination.locationText = locationNames[selectedRow]
                 destination.asset = indexNameMap[selectedRow]!
                 option.synchronous = true
                 option.deliveryMode = .HighQualityFormat

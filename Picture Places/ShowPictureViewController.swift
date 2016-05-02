@@ -18,7 +18,6 @@ class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var saveButton: UIButton!
     
     var image: UIImage = UIImage()
-    var locationText = ""
     var asset = PHAsset()
     var locationValue: CLLocationCoordinate2D = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
@@ -26,11 +25,19 @@ class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         imageDisplay.image = image
-        imageLabel.text = locationText
-        if locationText != "No Location Given" {
-            currentLocationSwitch.hidden = true
-            useCurrentLabel.hidden = true
-            saveButton.hidden = true
+        let tbvc = tabBarController as! PictureTabController
+        let locationName = tbvc.assetLocationNameMap[asset]
+        
+        if let name = locationName {
+            if name == nil{
+                imageLabel.text = "No Location Given"
+            }
+            else{
+                imageLabel.text = name
+                currentLocationSwitch.hidden = true
+                useCurrentLabel.hidden = true
+                saveButton.hidden = true
+            }
         }
         
         if CLLocationManager.locationServicesEnabled() {
