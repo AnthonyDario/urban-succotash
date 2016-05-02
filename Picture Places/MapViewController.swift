@@ -50,11 +50,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     if let location = picture.location {
                             
                         if let name = self.assetLocationNameMap[picture] {
-                            print("got name: \(name)")
                             self.dropPin(location.coordinate, title: name!, image: pic)
                         }
                         else {
-                            print("no name")
                             self.dropPin(location.coordinate, title: "No Name", image: pic)
                         }
                     }
@@ -76,6 +74,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //not.region = reg
         UIApplication.sharedApplication().scheduleLocalNotification(not)
         */
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+        for subview in map.subviews {
+            if subview.isKindOfClass(UIButton) {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        for annotation in map.selectedAnnotations {
+            map.deselectAnnotation(annotation, animated: false)
+        }
     }
     
     // MARK: MKMapViewDelegate
@@ -112,10 +123,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if let picView = view as? PictureAnnotationView {
             if let picAnnotation = picView.annotation as? PictureAnnotation {
                 let frame = CGRectMake(picView.frame.origin.x - 18, picView.frame.origin.y - 60, 50,50)
-                let picture = UIImageView(frame: frame)
-                picture.image = picAnnotation.picture
-                self.map.addSubview(picture)
-                //picView.addSubview(UIImageView(image: picAnnotation.picture))
+                let image = picAnnotation.picture
+                let button = UIButton(type: .Custom)
+                
+                button.addTarget(self, action: #selector(MapViewController.selectedButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                button.frame = frame
+                button.setImage(image, forState: UIControlState.Normal)
+                self.map.addSubview(button)
             }
         }
     }

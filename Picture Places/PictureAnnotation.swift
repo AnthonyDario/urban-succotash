@@ -33,14 +33,14 @@ class PictureAnnotationView: MKPinAnnotationView {
     
     convenience init(annotation: MKAnnotation!) {
         self.init(annotation: annotation, reuseIdentifier: PictureAnnotationView.reuseIdentifier)
-        self.canShowCallout = false
+         self.canShowCallout = false
     }
     
 }
 
-class PictureAnnotationCalloutView: UIImageView {
+class PictureAnnotationCalloutView: MKAnnotationView {
     
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        self.hitTest(touches[touches.startIndex].locationInView(self), withEvent: event)
-//    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }
