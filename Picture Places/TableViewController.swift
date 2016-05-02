@@ -114,7 +114,7 @@ class TableViewController: UITableViewController {
                 destination.asset = indexNameMap[selectedRow]!
                 option.synchronous = true
                 option.deliveryMode = .HighQualityFormat
-                manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+                manager.requestImageForAsset(indexNameMap[selectedRow]!, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
                     thumbnail = result!
                     destination.image = thumbnail
                 })
