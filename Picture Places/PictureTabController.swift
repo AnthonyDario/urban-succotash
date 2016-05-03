@@ -34,7 +34,7 @@ class PictureTabController: UITabBarController {
         
         print("updating name map")
         for (asset, location) in assetLocationMap{
-            updateLocationName(asset, location: location)
+            updateLocationName(asset, location: location, writtenName: nil)
         }
         print("\tupdated name map")
         
@@ -46,7 +46,7 @@ class PictureTabController: UITabBarController {
         print("segue: \(segue.identifier)")
     }
     
-    func updateLocationName(asset: PHAsset, location: CLLocation?) -> Void {
+    func updateLocationName(asset: PHAsset, location: CLLocation?, writtenName: String?) -> Void {
         if let actualLocation = location{
             CLGeocoder().reverseGeocodeLocation(actualLocation, completionHandler: {(placemarks, error) -> Void in
                 print("got a location")
@@ -65,6 +65,9 @@ class PictureTabController: UITabBarController {
                      self.assetLocationNameMap.updateValue("Problem with the data received from geocoder", forKey: asset)
                 }
             })
+        }
+        else if let writtenLocationName = writtenName{
+            self.assetLocationNameMap.updateValue(writtenLocationName, forKey: asset)
         }
         else{
             self.assetLocationNameMap.updateValue(nil, forKey: asset)

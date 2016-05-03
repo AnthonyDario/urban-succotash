@@ -16,7 +16,15 @@ class TableViewController: UITableViewController {
     var assetLocationNameMap = [PHAsset: String?]()
     var locationNames = [String]()
     var indexNameMap = [Int: PHAsset]()
+    var noLocationAssetsMap = [PHAsset: CLLocation?]()
+    var noLocationAssetsNamesMap = [PHAsset: String?]()
+    var noLocationAssets = [PHAsset]()
     var selectedRow = -1
+    @IBOutlet weak var viewImagesButton: UIButton!
+    
+    @IBAction func viewNoLocationImages(sender: AnyObject) {
+        performSegueWithIdentifier("ToNoLocationImages", sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,23 +33,6 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        /*let tbvc = tabBarController as! PictureTabController
-        assetList = tbvc.assetList
-        assetLocationMap = tbvc.assetLocationMap
-        assetLocationNameMap = tbvc.assetLocationNameMap
-        
-        var index = 0;
-        for (asset, locationName) in assetLocationNameMap {
-            if let actualLocationName = locationName{
-                locationNames.append(actualLocationName)
-                
-            }
-            else{
-                locationNames.append("No Location Given")
-            }
-            indexNameMap.updateValue(asset, forKey: index)
-            index = index + 1;
-        }*/
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,16 +43,25 @@ class TableViewController: UITableViewController {
         
         var index = 0;
         locationNames = [String]()
+        noLocationAssets = [PHAsset]()
         for (asset, locationName) in assetLocationNameMap {
             if let actualLocationName = locationName{
                 locationNames.append(actualLocationName)
-                
+                indexNameMap.updateValue(asset, forKey: index)
+                index = index + 1;
             }
             else{
-                locationNames.append("No Location Given")
+                //locationNames.append("No Location Given")
+                noLocationAssetsMap.updateValue(assetLocationMap[asset]!, forKey: asset)
+                noLocationAssetsNamesMap.updateValue(assetLocationNameMap[asset]!, forKey: asset)
+                noLocationAssets.append(asset)
             }
-            indexNameMap.updateValue(asset, forKey: index)
-            index = index + 1;
+            //indexNameMap.updateValue(asset, forKey: index)
+            //index = index + 1;
+        }
+        
+        if noLocationAssets.count == 0 {
+            viewImagesButton.hidden = true
         }
         tableView.reloadData()
     }
@@ -105,7 +105,6 @@ class TableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        //print(findKeyForValue(locationNames[selectedRow], dictionary: assetLocationNameMap))
         if segue.identifier == "ToImageView" {
             if let destination = segue.destinationViewController as? ShowPictureViewController {
                 let manager = PHImageManager.defaultManager()
@@ -114,12 +113,18 @@ class TableViewController: UITableViewController {
                 destination.asset = indexNameMap[selectedRow]!
                 option.synchronous = true
                 option.deliveryMode = .HighQualityFormat
-                manager.requestImageForAsset(assetList[selectedRow], targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+                manager.requestImageForAsset(indexNameMap[selectedRow]!, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
                     thumbnail = result!
                     destination.image = thumbnail
                 })
-                //print(assetList[selectedRow])
-                //destination.imageDisplay = self.locationNames
+            }
+        }
+        else if segue.identifier == "ToNoLocationImages" {
+            if let destination = segue.destinationViewController as? CollectionViewController {
+                print("here")
+                destination.noLocationAssetsMap = noLocationAssetsMap
+                destination.noLocationAssetsNamesMap = noLocationAssetsNamesMap
+                destination.noLocationAssets = noLocationAssets
             }
         }
     }
