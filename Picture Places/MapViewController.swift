@@ -19,6 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var assetLocationMap = [PHAsset: CLLocation?]()
     var assetLocationNameMap = [PHAsset: String?]()
     var currentAsset: PHAsset?
+    var homeAnnotation: MKPointAnnotation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +33,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if CLLocationManager.authorizationStatus() == .NotDetermined {
             manager.requestWhenInUseAuthorization()
         }
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.longPress(_:)))
+        longPress.minimumPressDuration = 1.0
+        self.map.addGestureRecognizer(longPress)
 
     }
     
     override func viewWillAppear(animated: Bool) {
         
+        manager.startUpdatingLocation()
         let tbvc = tabBarController as! PictureTabController
         assetList = tbvc.assetList
         assetLocationMap = tbvc.assetLocationMap
@@ -54,8 +60,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             picManager.requestImageForAsset(picture, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: options, resultHandler: {(result, info) -> Void in
                 
                 if let pic = result {
-                    
-                    print(self.assetLocationMap[picture])
                     
                     if let location = self.assetLocationMap[picture]! {
                         
@@ -121,7 +125,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             return annotationView
             
         } else {
-            return nil
+            print("added different view")
+            let view = PictureAnnotationView(annotation: annotation)
+            view.pinColor = .Green
+            return view
         }
     }
     
@@ -192,6 +199,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @objc private func selectedButton (sender: UIButton) {
         performSegueWithIdentifier("ShowPicture", sender: sender)
+    }
+    
+    @objc private func longPress(recognizer: UILongPressGestureRecognizer) {
+        print("longPress")
+        
+        if let home = homeAnnotation {
+            map.removeAnnotation(home)
+        }
+        homeAnnotation = MKPointAnnotation()
+        let touchPoint = recognizer.locationInView(self.map)
+        let coordinate = self.map.convertPoint(touchPoint, toCoordinateFromView: self.map)
+        homeAnnotation!.coordinate = coordinate
+        map.addAnnotation(homeAnnotation!)
+        
+        let not = UILocalNotification()
+        not.alertAction = "Take a Picture!"
+        not.alertBody = "Now!!!!"
+        not.hasAction = true
+//        let current = NSDate().dateByAddingTimeInterval(10)
+//        not.fireDate = current
+        let reg = CLCircularRegion(center: coordinate, radius: 1000, identifier: "home")
+        not.region = reg
+        UIApplication.sharedApplication().scheduleLocalNotification(not)
     }
 
 }

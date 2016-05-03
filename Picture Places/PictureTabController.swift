@@ -48,7 +48,6 @@ class PictureTabController: UITabBarController {
     
     func updateLocationName(asset: PHAsset, location: CLLocation?) -> Void {
         if let actualLocation = location{
-            print("getting locationName")
             CLGeocoder().reverseGeocodeLocation(actualLocation, completionHandler: {(placemarks, error) -> Void in
                 print("got a location")
                 
