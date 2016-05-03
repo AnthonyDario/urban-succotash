@@ -76,21 +76,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-        /*
-        let not = UILocalNotification()
-        not.alertAction = "what up"
-        not.alertBody = "col"
-        not.hasAction = true
-        let current = NSDate().dateByAddingTimeInterval(10)
-        not.fireDate = current
-        //let reg = CLCircularRegion(center: CLLocationCoordinate2DMake(51.5, 0.12), radius: 1000, identifier: "london")
-        //not.region = reg
-        UIApplication.sharedApplication().scheduleLocalNotification(not)
-        */
-    }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 
         for subview in map.subviews {
@@ -168,7 +153,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //map.setCenterCoordinate(locations[0].coordinate, animated: true)
         var viewRegion = MKCoordinateRegionMakeWithDistance(locations[0].coordinate, 5000, 5000)
         viewRegion = map.regionThatFits(viewRegion)
         map.setRegion(viewRegion, animated: true)
@@ -217,8 +201,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         not.alertAction = "Take a Picture!"
         not.alertBody = "Now!!!!"
         not.hasAction = true
-//        let current = NSDate().dateByAddingTimeInterval(10)
-//        not.fireDate = current
         let reg = CLCircularRegion(center: coordinate, radius: 1000, identifier: "home")
         not.region = reg
         UIApplication.sharedApplication().scheduleLocalNotification(not)
