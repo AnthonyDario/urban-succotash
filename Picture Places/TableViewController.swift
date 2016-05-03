@@ -105,7 +105,6 @@ class TableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        //print(findKeyForValue(locationNames[selectedRow], dictionary: assetLocationNameMap))
         if segue.identifier == "ToImageView" {
             if let destination = segue.destinationViewController as? ShowPictureViewController {
                 let manager = PHImageManager.defaultManager()
@@ -118,8 +117,6 @@ class TableViewController: UITableViewController {
                     thumbnail = result!
                     destination.image = thumbnail
                 })
-                //print(assetList[selectedRow])
-                //destination.imageDisplay = self.locationNames
             }
         }
         else if segue.identifier == "ToNoLocationImages" {

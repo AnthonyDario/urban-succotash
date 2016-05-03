@@ -181,7 +181,6 @@
                             <state key="normal" title="View images with no location"/>
                             <connections>
                                 <action selector="viewNoLocationImages:" destination="hDc-Co-bn9" eventType="touchUpInside" id="os2-A9-hhw"/>
-                                <segue destination="cGJ-8p-Ld8" kind="show" identifier="ToNoLocationImages" id="Zrp-Qd-ylL"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -215,6 +214,7 @@
                     <connections>
                         <outlet property="viewImagesButton" destination="ub3-7m-aR4" id="ajx-2i-LBz"/>
                         <segue destination="2iB-Ks-IZK" kind="show" identifier="ToImageView" id="NZ8-ye-OiG"/>
+                        <segue destination="cGJ-8p-Ld8" kind="show" identifier="ToNoLocationImages" id="Krp-ka-5Fr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msO-gh-84c" userLabel="First Responder" sceneMemberID="firstResponder"/>
