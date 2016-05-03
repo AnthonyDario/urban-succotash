@@ -16,7 +16,15 @@ class TableViewController: UITableViewController {
     var assetLocationNameMap = [PHAsset: String?]()
     var locationNames = [String]()
     var indexNameMap = [Int: PHAsset]()
+    var noLocationAssetsMap = [PHAsset: CLLocation?]()
+    var noLocationAssetsNamesMap = [PHAsset: String?]()
+    var noLocationAssets = [PHAsset]()
     var selectedRow = -1
+    @IBOutlet weak var viewImagesButton: UIButton!
+    
+    @IBAction func viewNoLocationImages(sender: AnyObject) {
+        performSegueWithIdentifier("ToNoLocationImages", sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +43,25 @@ class TableViewController: UITableViewController {
         
         var index = 0;
         locationNames = [String]()
+        noLocationAssets = [PHAsset]()
         for (asset, locationName) in assetLocationNameMap {
             if let actualLocationName = locationName{
                 locationNames.append(actualLocationName)
-                
+                indexNameMap.updateValue(asset, forKey: index)
+                index = index + 1;
             }
             else{
-                locationNames.append("No Location Given")
+                //locationNames.append("No Location Given")
+                noLocationAssetsMap.updateValue(assetLocationMap[asset]!, forKey: asset)
+                noLocationAssetsNamesMap.updateValue(assetLocationNameMap[asset]!, forKey: asset)
+                noLocationAssets.append(asset)
             }
-            indexNameMap.updateValue(asset, forKey: index)
-            index = index + 1;
+            //indexNameMap.updateValue(asset, forKey: index)
+            //index = index + 1;
+        }
+        
+        if noLocationAssets.count == 0 {
+            viewImagesButton.hidden = true
         }
         tableView.reloadData()
     }
@@ -103,6 +120,14 @@ class TableViewController: UITableViewController {
                 })
                 //print(assetList[selectedRow])
                 //destination.imageDisplay = self.locationNames
+            }
+        }
+        else if segue.identifier == "ToNoLocationImages" {
+            if let destination = segue.destinationViewController as? CollectionViewController {
+                print("here")
+                destination.noLocationAssetsMap = noLocationAssetsMap
+                destination.noLocationAssetsNamesMap = noLocationAssetsNamesMap
+                destination.noLocationAssets = noLocationAssets
             }
         }
     }

@@ -68,7 +68,6 @@ class ShowPictureViewController: UIViewController, CLLocationManagerDelegate{
             tbvc.updateLocationName(asset, location: actualLocation, writtenName: nil)
         }
         else if currentLocationSwitch.hidden || !currentLocationSwitch.on{
-            print("here")
             tbvc.updateLocationName(asset, location: nil, writtenName: imageTextField.text)
         }
     }
